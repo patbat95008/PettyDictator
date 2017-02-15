@@ -20,9 +20,20 @@ ExportedObj/
 *.svd
 
 
-# Unity3D generated meta files
-*.pidb.meta
-Library\metadata\*
+# Ignore the following files
+# --------------------------
+# Unity3D specific
+#
+**/Library/*
+**/Temp/*
+**/*.csproj
+**/*.unityproj
+**/*.sln
+**/*.userprefs
+**/*.pidb
+
+# include meta files
+!*.*.meta
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
