@@ -68,6 +68,7 @@ public class GameLoader : MonoBehaviour {
 
 		// Load things //
 		tree_script.title = scanner.ReadLine();
+		start_tree.name = tree_script.title;
 
 		while(scanner.ReadLine() != null){
 			//Init events - Note, may need to loop
@@ -75,6 +76,7 @@ public class GameLoader : MonoBehaviour {
 			event_script = game_event.GetComponent<GameEvent>();
 
 			event_script.title = getBlock(scanner);
+			game_event.name = event_script.title;
 
 			event_script.key = getBlock(scanner);
 
@@ -104,7 +106,7 @@ public class GameLoader : MonoBehaviour {
 			}else{
 				//Debug.Log("line = " + line);
 				block += line;
-				block += '\n';
+				//block += '\n';
 			}
 		} while (line != null);
 
