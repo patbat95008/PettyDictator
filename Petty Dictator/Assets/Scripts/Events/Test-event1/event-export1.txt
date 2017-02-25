@@ -1,0 +1,78 @@
+Test Event Tree
+---
+Event 1 – Title 1
+***
+Event 1 Key
+***
+"Briefing 1 Goes Here.
+Blah Blah Blah"
+---
+Choice A – Title
+***
++ Good thing
++ Good thing 2
+- Bad thing 
+- Bad thing 2
+***
+Event 2 key
+---
+Choice B – Title
+***
++ Good thing
++ Good thing 2
+- Bad Thing
+- Bad thing 2
+***
+Event 3 key
+----
+----
+Event 2 – Title 2
+***
+Event 2 key
+***
+"Briefing 2 Goes Here.
+Blah Blah Blah"
+***
+Choice A – Title
+***
++ Good thing
++ Good thing 2
+- Bad thing 
+- Bad thing 2
+***
+Event 4 key
+***
+Choice B – Title
+***
++ Good thing
++ Good thing 2
+- Bad Thing
+- Bad thing 2
+***
+Event 5 key
+****
+****
+Event 3 – Title 2
+***
+Event 3 key
+***
+"Briefing 3 Goes Here.
+Blah Blah Blah"
+***
+Choice A – Title
+***
++ Good thing
++ Good thing 2
+- Bad thing 
+- Bad thing 2
+***
+Event 6 key
+***
+Choice B – Title
+***
++ Good thing
++ Good thing 2
+- Bad Thing
+- Bad thing 2
+***
+Event 7 key
