@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.IO;
+using System.Text;
+using UnityEngine.UI;
 
 public class UI_Control : MonoBehaviour {
 	public GameObject ui, briefing, debate, office;
@@ -9,6 +12,8 @@ public class UI_Control : MonoBehaviour {
 	private GameObject go_cam;
 	private CameraSequence cam_seq;
 	private GameObject[] ui_sequence;
+	private GameObject brief_a, brief_b, brief_c;
+	private GameObject briefing_text;
 
 	void Start () {
 		//Load objects
@@ -27,13 +32,12 @@ public class UI_Control : MonoBehaviour {
 
 		//Set up first screen
 		briefing.SetActive(true);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+		briefing_text = GameObject.Find("Briefing_text");
+		briefing_text.SetActive(false);
 	}
 
+	//DEBUG: go to the next screen
 	public void Next () {
 		if(cam_seq.curr_index > 0){
 			cam_seq.curr_index --;
@@ -45,9 +49,36 @@ public class UI_Control : MonoBehaviour {
 		}
 	}
 
+	//Displays briefing
+	//Takes an int:
+	//0 - event A	 1 - event B	 2 - event C
+	public void Briefing_click (int select){
+		string text;
+		GameManager manager_script = gameObject.GetComponent<GameManager>();
+
+		if(select == 0)
+			text = manager_script.eventA.GetComponent<GameEvent>().briefing;
+		else
+			text = "404 - No Briefing Found";
+
+		//Turn off all buttons
+		buttonSet(false);
+		//Set the text and display it
+		briefing_text.transform.GetComponentInChildren<Text>().text = text;
+		briefing_text.SetActive(true);
+
+	}
+
 	private position changeUI(position pos1, position pos2){
 		ui_sequence[(int)pos1].SetActive(false);
 		ui_sequence[(int)pos2].SetActive(true);
+		buttonSet(true);
 		return pos2;
+	}
+
+	private void buttonSet(bool onOff){
+		//Turn off the buttons
+		foreach(GameObject button in GameObject.FindGameObjectsWithTag("Button"))
+			button.SetActive(onOff);
 	}
 }

@@ -11,8 +11,11 @@ public class GameLoader : MonoBehaviour {
 	private GameObject game_tree, game_event, game_choice;
 	private EventTree tree_script;
 	private GameEvent event_script;
+	private GameManager manager_script;
 
 	void Start () {
+		manager_script = gameObject.GetComponent<GameManager>();
+
 		loadEventData(dataPath);
 	}
 
@@ -70,6 +73,9 @@ public class GameLoader : MonoBehaviour {
 		tree_script.title = scanner.ReadLine();
 		start_tree.name = tree_script.title;
 
+		//Load the data by creating the event gameobjects
+		//And assign them to the start trees
+		bool first = true;
 		while(scanner.ReadLine() != null){
 			//Init events - Note, may need to loop
 			game_event = Instantiate(start_event);
@@ -89,8 +95,17 @@ public class GameLoader : MonoBehaviour {
 			event_script.choice_b_title = getBlock(scanner);
 			getPoints(scanner, event_script.choice_b_good, event_script.choice_b_bad);
 			event_script.choice_b_link = getBlock(scanner);
+
+			if(first){
+				start_tree.GetComponent<EventTree>().startEvent = game_event;
+				first = false;
+			}
 		}
 		scanner.Close();
+
+		// Load data into Game Manager Script
+		manager_script.curr_trees = start_tree;
+		manager_script.eventA = start_tree.GetComponent<EventTree>().startEvent;
 	}
 
 	//Get a block of text from the beginning until it hits '***'
